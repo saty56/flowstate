@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Started – FlowState</title>
+    <meta name="description" content="Set up your FlowState account in 3 minutes." />
+    <link rel="icon" href="logo.webp" type="image/webp" />
+    <link rel="stylesheet" href="style.css?v=10" />
+</head>
+
+<body>
+    <div class="bg-orbs" style="opacity:0.35;">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+    <div class="bg-grid" style="opacity:0.4;"></div>
+
+    <div class="toast-stack" id="toastStack"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar scrolled">
+        <div class="container navbar-inner">
+            <a href="index.html" class="logo">
+                <div class="logo-mark">
+                    <img src="logo.webp" alt="logo" />
+                </div>
+                <span class="logo-name">FlowState</span>
+            </a>
+            <p style="font-size:0.82rem;color:var(--text-3);">About 3 minutes to complete</p>
+        </div>
+    </nav>
+
+    <main class="onboard-page">
+        <div class="container">
+            <div class="form-wrap">
+
+                <div style="text-align:center;margin-bottom:12px;">
+                    <div class="label-chip" style="display:inline-flex;margin-bottom:20px;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                        Let's set up your account
+                    </div>
+                    <h1 class="form-page-title">Meet your <span class="gradient-text">FlowState</span></h1>
+                    <p class="form-page-sub">Tell us how you work best and we'll personalize everything.</p>
+                </div>
+
+                <!-- Step indicator -->
+                <div class="step-dots" id="stepDots">
+                    <div class="s-dot active" id="sd-1"></div>
+                    <div class="s-dot" id="sd-2"></div>
+                    <div class="s-dot" id="sd-3"></div>
+                    <div class="s-dot" id="sd-4"></div>
+                </div>
+
+                <!-- ══ Step 1: Basics ══ -->
+                <div class="form-step active" id="step-1">
+                    <div class="f-card">
+                        <h2 class="f-card-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                            The basics
+                        </h2>
+                        <p class="f-card-sub">Used for your account and SMS messages.</p>
+
+                        <div class="fg">
+                            <label class="fg-label" for="name">Your name <span class="req">*</span></label>
+                            <input type="text" id="name" class="f-input" placeholder="How do you like to be called?"
+                                autocomplete="given-name" />
+                            <div class="fg-err" id="err-name">Please enter your name.</div>
+                        </div>
+
+                        <div class="fg">
+                            <label class="fg-label" for="phone">Phone number <span class="req">*</span></label>
+                            <input type="tel" id="phone" class="f-input" placeholder="+1 (555) 000-0000"
+                                autocomplete="tel" />
+                            <p class="fg-hint">US numbers only for now. We text you daily via SMS.</p>
+                            <div class="fg-err" id="err-phone">Please enter a valid phone number.</div>
+                        </div>
+
+                        <div class="fg">
+                            <label class="fg-label" for="timezone">Timezone <span class="req">*</span></label>
+                            <select id="timezone" class="f-select">
+                                <option value="">Select your timezone...</option>
+                            </select>
+                            <div class="fg-err" id="err-tz">Please select your timezone.</div>
+                        </div>
+                    </div>
+
+                    <div class="f-nav">
+                        <span class="f-nav-prog">Step 1 of 4</span>
+                        <button class="btn btn-primary" onclick="nextStep(1)">
+                            Continue
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ══ Step 2: Work Style ══ -->
+                <div class="form-step" id="step-2">
+                    <div class="f-card">
+                        <h2 class="f-card-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                            </svg>
+                            How you work
+                        </h2>
+                        <p class="f-card-sub">This helps FlowState speak your language and understand your context.</p>
+
+                        <div class="fg">
+                            <label class="fg-label" for="workType">Describe your freelance work <span
+                                    class="req">*</span></label>
+                            <input type="text" id="workType" class="f-input"
+                                placeholder="e.g. writing, design, coding, consulting..." />
+                            <div class="fg-err" id="err-work">Please describe your work.</div>
+                        </div>
+
+                        <div class="fg">
+                            <label class="fg-label">Where do you usually get stuck? <span class="req">*</span></label>
+                            <p class="fg-hint" style="margin-bottom:12px;">Select all that apply — this is key to
+                                personalizing your experience.</p>
+                            <div class="chip-row" id="stuckChips">
+                                <label class="chip"><input type="checkbox" value="starting" />Getting started</label>
+                                <label class="chip"><input type="checkbox" value="focusing" />Staying focused</label>
+                                <label class="chip"><input type="checkbox" value="finishing" />Finishing things</label>
+                                <label class="chip"><input type="checkbox" value="admin" />Admin tasks</label>
+                                <label class="chip"><input type="checkbox" value="transitions" />Task switching</label>
+                                <label class="chip"><input type="checkbox" value="overwhelm" />Overwhelm</label>
+                            </div>
+                            <div class="fg-err" id="err-stuck">Select at least one area.</div>
+                        </div>
+                    </div>
+
+                    <div class="f-nav">
+                        <button class="btn btn-ghost" onclick="prevStep(2)">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 12H5" />
+                                <path d="m12 19-7-7 7-7" />
+                            </svg>
+                            Back
+                        </button>
+                        <span class="f-nav-prog">Step 2 of 4</span>
+                        <button class="btn btn-primary" onclick="nextStep(2)">
+                            Continue
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ══ Step 3: Preferences ══ -->
+                <div class="form-step" id="step-3">
+                    <div class="f-card">
+                        <h2 class="f-card-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3" />
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" />
+                            </svg>
+                            Your preferences
+                        </h2>
+                        <p class="f-card-sub">You can change these any time by texting FlowState.</p>
+
+                        <div class="fg">
+                            <label class="fg-label">Check-in frequency during sessions <span
+                                    class="req">*</span></label>
+                            <div class="chip-row" id="freqChips" style="margin-top:4px;">
+                                <label class="chip on" id="fc-5"><input type="radio" name="freq" value="5"
+                                        checked />Every 5 min</label>
+                                <label class="chip" id="fc-15"><input type="radio" name="freq" value="15" />Every 15
+                                    min</label>
+                                <label class="chip" id="fc-30"><input type="radio" name="freq" value="30" />Every 30
+                                    min</label>
+                                <label class="chip" id="fc-manual"><input type="radio" name="freq" value="manual" />Only
+                                    when I ask</label>
+                            </div>
+                        </div>
+
+                        <div class="fg">
+                            <label class="fg-label" for="morningTime">Morning check-in time</label>
+                            <input type="time" id="morningTime" class="f-input" value="09:00" />
+                            <p class="fg-hint">When FlowState texts you each morning to set your daily goal.</p>
+                        </div>
+
+                        <div class="fg">
+                            <label class="fg-label">Coaching style <span class="req">*</span></label>
+                            <div class="tone-pick">
+
+                                <div class="tp-opt">
+                                    <input type="radio" name="tone" id="t-cheer" value="cheerleader" />
+                                    <label class="tp-lbl" for="t-cheer">
+                                        <div class="tp-icon bg-amber">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                style="color:#fbbf24;width:18px;height:18px;">
+                                                <polygon
+                                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                                            </svg>
+                                        </div>
+                                        <span class="tp-name">Cheerleader</span>
+                                        <span class="tp-hint">High energy and celebration</span>
+                                    </label>
+                                </div>
+
+                                <div class="tp-opt">
+                                    <input type="radio" name="tone" id="t-coach" value="coach" checked />
+                                    <label class="tp-lbl" for="t-coach">
+                                        <div class="tp-icon bg-purple">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                style="color:var(--primary-light);width:18px;height:18px;">
+                                                <path d="M12 20h9" />
+                                                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                                            </svg>
+                                        </div>
+                                        <span class="tp-name">Direct Coach</span>
+                                        <span class="tp-hint">No-fluff, action-focused</span>
+                                    </label>
+                                </div>
+
+                                <div class="tp-opt">
+                                    <input type="radio" name="tone" id="t-gentle" value="gentle" />
+                                    <label class="tp-lbl" for="t-gentle">
+                                        <div class="tp-icon bg-cyan">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                style="color:var(--cyan-light);width:18px;height:18px;">
+                                                <path
+                                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                            </svg>
+                                        </div>
+                                        <span class="tp-name">Gentle Friend</span>
+                                        <span class="tp-hint">Calm and compassionate</span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="f-nav">
+                        <button class="btn btn-ghost" onclick="prevStep(3)">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 12H5" />
+                                <path d="m12 19-7-7 7-7" />
+                            </svg>
+                            Back
+                        </button>
+                        <span class="f-nav-prog">Step 3 of 4</span>
+                        <button class="btn btn-primary" onclick="nextStep(3)">
+                            Continue
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ══ Step 4: Integrations ══ -->
+                <div class="form-step" id="step-4">
+                    <div class="f-card">
+                        <h2 class="f-card-title">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                            </svg>
+                            Connect your tools
+                            <span
+                                style="font-size:0.72rem;font-weight:500;color:var(--text-3);letter-spacing:0.02em;padding:3px 10px;background:var(--bg-2);border-radius:var(--r-pill);border:1px solid var(--border);">Optional</span>
+                        </h2>
+                        <p class="f-card-sub">These help FlowState see your schedule. You can skip and connect later.
+                        </p>
+
+                        <!-- Google Calendar -->
+                        <div class="integ-tile" id="calTile">
+                            <div class="integ-info">
+                                <div class="integ-logo bg-blue">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" style="color:#60a5fa">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                        <line x1="16" y1="2" x2="16" y2="6" />
+                                        <line x1="8" y1="2" x2="8" y2="6" />
+                                        <line x1="3" y1="10" x2="21" y2="10" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="integ-name">Google Calendar</div>
+                                    <div class="integ-desc">FlowState will work around your existing schedule</div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-outline btn-sm" id="calBtn"
+                                onclick="toggleCalendar()">Connect</button>
+                        </div>
+
+                        <!-- Todoist -->
+                        <div class="integ-tile">
+                            <div class="integ-info">
+                                <div class="integ-logo bg-red">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" style="color:#f87171">
+                                        <polyline points="9 11 12 14 22 4" />
+                                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="integ-name">Task App</div>
+                                    <div class="integ-desc">Sync goals from Todoist, Asana, or Notion</div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-ghost btn-sm" disabled
+                                style="opacity:0.4;cursor:not-allowed;">Coming soon</button>
+                        </div>
+
+                        <!-- Summary -->
+                        <div class="summary-box" id="summaryBox">
+                            <p
+                                style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--primary-light);margin-bottom:10px;">
+                                Your setup</p>
+                            <div id="summaryRows"></div>
+                        </div>
+                    </div>
+
+                    <div class="f-nav">
+                        <button class="btn btn-ghost" onclick="prevStep(4)">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 12H5" />
+                                <path d="m12 19-7-7 7-7" />
+                            </svg>
+                            Back
+                        </button>
+                        <span class="f-nav-prog">Step 4 of 4</span>
+                        <button class="btn btn-primary btn-lg" id="submitBtn" onclick="submitForm()">
+                            <span id="submitTxt">Activate FlowState</span>
+                            <div class="spin" id="submitSpin" style="display:none;"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ══ Success ══ -->
+                <div class="form-step" id="step-success">
+                    <div class="f-card success-card">
+                        <div class="success-ring">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </div>
+                        <h2 class="success-title">You're all set, <span class="gradient-text"
+                                id="successName">friend</span>.</h2>
+                        <p class="success-msg">Your account is active. Check your phone — we just sent you a welcome
+                            text.<br /><br />Your first morning check-in arrives <strong>tomorrow at <span
+                                    id="successTime">9:00 AM</span></strong>.</p>
+                        <ul class="success-list" style="margin-bottom:36px;">
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                                Welcome SMS incoming — check your phone
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                                Morning check-in at your scheduled time
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                                Text "Help" anytime for commands
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                                Text "Stop" to pause at any time
+                            </li>
+                        </ul>
+                        <a href="dashboard.html" class="btn btn-primary">
+                            View your dashboard
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const API = 'http://localhost:3000';
+        let calConnected = false;
+        
+        // Read userId and token from URL HASH (#) — survives npx serve redirects
+        // Hash format: #userId=UUID&token=TOKEN
+        function parseHash() {
+            const hash = window.location.hash.substring(1); // remove leading #
+            const params = {};
+            hash.split('&').forEach(p => {
+                const [k, v] = p.split('=');
+                if (k) params[k] = decodeURIComponent(v || '');
+            });
+            return params;
+        }
+        
+        const _hashParams = parseHash();
+        let createdUserId = _hashParams.userId || new URLSearchParams(window.location.search).get('userId');
+        
+        if (_hashParams.token) {
+            localStorage.setItem('fs_token', _hashParams.token);
+            if (createdUserId) localStorage.setItem('fs_uid', createdUserId);
+        }
+        
+        // Also check localStorage as fallback
+        if (!createdUserId) createdUserId = localStorage.getItem('fs_uid');
+        
+        let preName = '';
+        try {
+            const u = JSON.parse(localStorage.getItem('fs_user'));
+            if (u) {
+                if (!createdUserId) createdUserId = u.id;
+                preName = u.name || '';
+            }
+        } catch (e) { }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (preName) document.getElementById('name').value = preName;
+        });
+
+        const fd = { userId: null, name: '', phone_number: '', timezone: '', work_type: '', stuck_points: [], checkin_frequency: '15', tone_preference: 'coach', morning_checkin_time: '09:00' };
+
+        // ── Timezone load ──
+        async function loadTZ() {
+            const sel = document.getElementById('timezone');
+            const fallback = [
+                ['America/New_York', 'Eastern Time (ET)'], ['America/Chicago', 'Central Time (CT)'],
+                ['America/Denver', 'Mountain Time (MT)'], ['America/Los_Angeles', 'Pacific Time (PT)'],
+                ['Europe/London', 'London (GMT)'], ['Europe/Paris', 'Central European (CET)'],
+                ['Asia/Dubai', 'Dubai (GST)'], ['Asia/Kolkata', 'India (IST)'],
+                ['Asia/Singapore', 'Singapore (SST)'], ['Asia/Tokyo', 'Japan (JST)'],
+                ['Australia/Sydney', 'Sydney (AEST)'], ['America/Sao_Paulo', 'São Paulo (BRT)'],
+            ];
+            try {
+                const r = await fetch(`${API}/api/onboard/timezones`);
+                const d = await r.json();
+                d.timezones.forEach(tz => { const o = new Option(tz.label, tz.value); sel.appendChild(o); });
+            } catch {
+                fallback.forEach(([v, l]) => { const o = new Option(l, v); sel.appendChild(o); });
+            }
+            try {
+                const det = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                const match = Array.from(sel.options).find(o => o.value === det);
+                if (match) match.selected = true;
+            } catch { }
+        }
+        loadTZ();
+
+        // ── Chip toggles ──
+        document.querySelectorAll('#stuckChips .chip input[type="checkbox"]').forEach(inp => {
+            inp.addEventListener('change', () => inp.parentElement.classList.toggle('on', inp.checked));
+        });
+        document.querySelectorAll('#freqChips .chip input').forEach(inp => {
+            inp.addEventListener('change', () => {
+                document.querySelectorAll('#freqChips .chip').forEach(c => c.classList.remove('on'));
+                inp.parentElement.classList.add('on');
+            });
+        });
+
+        // ── Navigation ──
+        function showStep(n) {
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById(`step-${n}`);
+            if (target) target.classList.add('active');
+            document.querySelectorAll('.s-dot').forEach((d, i) => {
+                d.classList.remove('active', 'done');
+                if (typeof n === 'number' && i + 1 < n) d.classList.add('done');
+                else if (typeof n === 'number' && i + 1 === n) d.classList.add('active');
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextStep(cur) {
+            if (!validate(cur)) return;
+            collect(cur);
+            if (cur === 3) buildSummary();
+            showStep(cur + 1);
+        }
+        function prevStep(cur) { showStep(cur - 1); }
+
+        function validate(n) {
+            let ok = true;
+            const clr = id => { const e = document.getElementById(id); if (e) { e.classList.remove('show'); } };
+            const err = (inpId, errId, msg) => {
+                const i = document.getElementById(inpId); if (i) i.classList.add('err');
+                const e = document.getElementById(errId); if (e) { e.textContent = msg; e.classList.add('show'); }
+                ok = false;
+            };
+
+            if (n === 1) {
+                ['name', 'phone', 'timezone'].forEach(id => { const i = document.getElementById(id); if (i) i.classList.remove('err'); });
+                ['err-name', 'err-phone', 'err-tz'].forEach(clr);
+                if (!document.getElementById('name').value.trim()) err('name', 'err-name', 'Please enter your name.');
+                if (!/^[\d\s\-\+\(\)]{10,}$/.test(document.getElementById('phone').value.trim())) err('phone', 'err-phone', 'Please enter a valid phone number.');
+                if (!document.getElementById('timezone').value) err('timezone', 'err-tz', 'Please select your timezone.');
+            }
+            if (n === 2) {
+                clr('err-work'); clr('err-stuck'); document.getElementById('workType').classList.remove('err');
+                if (!document.getElementById('workType').value.trim()) err('workType', 'err-work', 'Please describe your work.');
+                if (!document.querySelectorAll('#stuckChips input:checked').length) {
+                    document.getElementById('err-stuck').textContent = 'Select at least one area.';
+                    document.getElementById('err-stuck').classList.add('show');
+                    ok = false;
+                }
+            }
+            return ok;
+        }
+
+        function collect(n) {
+            if (n === 1) {
+                fd.name = document.getElementById('name').value.trim();
+                fd.phone_number = document.getElementById('phone').value.trim();
+                fd.timezone = document.getElementById('timezone').value;
+            }
+            if (n === 2) {
+                fd.work_type = document.getElementById('workType').value.trim();
+                fd.stuck_points = Array.from(document.querySelectorAll('#stuckChips input:checked')).map(i => i.value);
+            }
+            if (n === 3) {
+                fd.checkin_frequency = document.querySelector('input[name="freq"]:checked')?.value || '15';
+                fd.tone_preference = document.querySelector('input[name="tone"]:checked')?.value || 'coach';
+                fd.morning_checkin_time = document.getElementById('morningTime').value || '09:00';
+            }
+        }
+
+        function buildSummary() {
+            const tone = { cheerleader: 'Cheerleader', coach: 'Direct Coach', gentle: 'Gentle Friend' };
+            const freq = { '5': 'Every 5 min', '15': 'Every 15 min', '30': 'Every 30 min', manual: 'Only when I ask' };
+            const rows = [
+                ['Name', fd.name],
+                ['Phone', fd.phone_number],
+                ['Work', fd.work_type],
+                ['Stuck points', fd.stuck_points.join(', ') || '—'],
+                ['Check-ins', freq[fd.checkin_frequency] || fd.checkin_frequency],
+                ['Morning time', fmtTime(fd.morning_checkin_time)],
+                ['Tone', tone[fd.tone_preference] || fd.tone_preference],
+            ];
+            document.getElementById('summaryRows').innerHTML = rows.map(([k, v]) =>
+                `<div class="summary-row"><span class="summary-key">${k}</span><span class="summary-val">${v}</span></div>`
+            ).join('');
+        }
+
+        function toggleCalendar() {
+            calConnected = !calConnected;
+            const btn = document.getElementById('calBtn');
+            const tile = document.getElementById('calTile');
+            if (calConnected) {
+                btn.textContent = 'Connected'; btn.classList.add('btn-primary'); btn.classList.remove('btn-outline');
+                tile.classList.add('connected');
+            } else {
+                btn.textContent = 'Connect'; btn.classList.remove('btn-primary'); btn.classList.add('btn-outline');
+                tile.classList.remove('connected');
+            }
+        }
+
+        async function submitForm() {
+            collect(3);
+            
+            // Always get freshest userId from localStorage or URL
+            if (!createdUserId) createdUserId = localStorage.getItem('fs_uid') || new URLSearchParams(window.location.search).get('userId');
+            fd.userId = createdUserId;
+            
+            const btn = document.getElementById('submitBtn');
+            const txt = document.getElementById('submitTxt');
+            const spin = document.getElementById('submitSpin');
+            btn.disabled = true; txt.style.display = 'none'; spin.style.display = 'block';
+
+            try {
+                const res = await fetch(`${API}/api/onboard`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(fd),
+                });
+                const data = await res.json();
+
+                if (res.ok) {
+                    createdUserId = data.userId;
+                    if (calConnected && createdUserId) window.open(`${API}/api/calendar/auth?userId=${createdUserId}`, '_blank');
+                    document.getElementById('successName').textContent = fd.name.split(' ')[0];
+                    document.getElementById('successTime').textContent = fmtTime(fd.morning_checkin_time);
+                    document.getElementById('stepDots').style.display = 'none';
+
+                    // Update dashboard link with userId
+                    const dashLink = document.querySelector('#step-success a[href="dashboard.html"]');
+                    if (dashLink && createdUserId) dashLink.href = `dashboard.html?userId=${createdUserId}`;
+
+                    // IMPORTANT: Save the user ID in memory so they never lose their session
+                    if (createdUserId) localStorage.setItem('fs_uid', createdUserId);
+
+                    showStep('success');
+                    
+                    // Auto redirect to dashboard after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = `dashboard.html?userId=${createdUserId}`;
+                    }, 2000);
+                } else {
+                    toast(data.error || 'Something went wrong. Please try again.', 'err');
+                    btn.disabled = false; txt.style.display = 'inline'; spin.style.display = 'none';
+                }
+            } catch (e) {
+                toast('Network error — is the backend running?', 'err');
+                btn.disabled = false; txt.style.display = 'inline'; spin.style.display = 'none';
+            }
+        }
+
+        function fmtTime(t) {
+            if (!t) return '9:00 AM';
+            const [h, m] = String(t).split(':').map(Number);
+            return `${h % 12 || 12}:${String(m).padStart(2, '0')} ${h >= 12 ? 'PM' : 'AM'}`;
+        }
+
+        function toast(msg, type = 'ok') {
+            const s = document.getElementById('toastStack');
+            const el = document.createElement('div');
+            el.className = `toast ${type}`;
+            el.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        ${type === 'ok' ? '<polyline points="20 6 9 17 4 12"/>' : '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>'}
+      </svg>
+      <span>${msg}</span>`;
+            s.appendChild(el);
+            setTimeout(() => el.remove(), 5000);
+        }
+    </script>
+</body>
+
+</html>

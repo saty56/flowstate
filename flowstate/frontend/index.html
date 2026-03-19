@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlowState – AI Accountability Partner for ADHD Freelancers</title>
+  <meta name="description"
+    content="FlowState is your AI-powered accountability coach built for ADHD freelancers. Personalized SMS check-ins, focus sessions, and momentum-building support tailored to your brain." />
+  <link rel="icon" href="logo.webp" type="image/webp" />
+  <link rel="stylesheet" href="style.css?v=10" />
+    <script>
+        if (localStorage.getItem('fs_uid')) {
+            window.location.href = 'dashboard.html?userId=' + localStorage.getItem('fs_uid');
+        }
+    </script>
+</head>
+
+<body>
+
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="bg-grid"></div>
+
+  <div class="toast-stack" id="toastStack"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">
+          <img src="logo.webp" alt="logo" />
+        </div>
+        <span class="logo-name">FlowState</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <a href="login.html" class="btn btn-ghost btn-sm">Log In</a>
+        <a href="signup.html" class="btn btn-primary btn-sm">Sign Up</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ════════════════ HERO ════════════════ -->
+    <section class="hero">
+      <div class="container hero-grid">
+
+        <div class="hero-content">
+          <div class="label-chip" style="margin-bottom:24px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2" />
+              <polyline points="2 17 12 22 22 17" />
+              <polyline points="2 12 12 17 22 12" />
+            </svg>
+            Built for ADHD Brains
+          </div>
+          <h1 class="hero-title">Your AI coach that<br><span class="gradient-text">actually gets it</span></h1>
+
+          <p class="hero-sub">FlowState texts you like a coach who understands how ADHD works. Daily commitments, timed
+            sessions, gentle check-ins — designed for how your brain actually functions.</p>
+
+          <div class="hero-actions">
+            <a href="signup.html" class="btn btn-primary btn-lg">Start for Free <svg xmlns="http://www.w3.org/2000/svg"
+                width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg></a>
+            <button class="btn btn-outline btn-lg"
+              onclick="document.getElementById('how-it-works').scrollIntoView();">See how it works</button>
+          </div>
+          <p class="hero-note">No app download. Works entirely via SMS — nothing to configure.</p>
+        </div>
+
+        <!-- Right mobile mockup -->
+        <div class="hero-visual">
+          <div class="phone-wrap">
+            <!-- Floating badges -->
+            <div class="float-badge badge-a">
+              <div class="float-badge-dot" style="background:#34d399;box-shadow:0 0 8px rgba(52,211,153,0.5);"></div>
+              <span>12 sessions this week</span>
+            </div>
+            <div class="float-badge badge-b">
+              <div class="float-badge-dot" style="background:#fbbf24;box-shadow:0 0 8px rgba(251,191,36,0.5);"></div>
+              <span>5-day focus streak</span>
+            </div>
+
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <div class="chat-feed" id="chatFeed">
+                <!-- JS populates this -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════ STATS ════════════════ -->
+    <section class="stats-banner">
+      <div class="container sb-grid">
+
+        <div class="sb-card">
+          <div class="sb-icon purple"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg></div>
+          <div class="sb-content">
+            <div class="sb-val">87%</div>
+            <div class="sb-lbl">Session Completion</div>
+          </div>
+        </div>
+
+        <div class="sb-card">
+          <div class="sb-icon cyan"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+            </svg></div>
+          <div class="sb-content">
+            <div class="sb-val">3.4x</div>
+            <div class="sb-lbl">More Tasks Done</div>
+          </div>
+        </div>
+
+        <div class="sb-card">
+          <div class="sb-icon amber"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg></div>
+          <div class="sb-content">
+            <div class="sb-val">12 days</div>
+            <div class="sb-lbl">Avg Focus Streak</div>
+          </div>
+        </div>
+
+        <div class="sb-card">
+          <div class="sb-icon green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg></div>
+          <div class="sb-content">
+            <div class="sb-val">4.9/5</div>
+            <div class="sb-lbl">User Satisfaction</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════ FEATURES ════════════════ -->
+    <section class="features" id="features">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">
+            <span class="label-chip">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+              </svg>
+              Why FlowState Works
+            </span>
+          </div>
+          <h2 class="section-title">Designed for the ADHD brain,<br /><span class="gradient-text">not against it</span>
+          </h2>
+          <p class="section-sub">Every feature is built around how ADHD minds actually function — bursts of focus,
+            avoidance cycles, and the proven power of external accountability.</p>
+        </div>
+
+        <div class="features-grid">
+
+          <div class="feat-card">
+            <div class="feat-icon bg-purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="color:var(--primary-light)">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                <line x1="12" y1="18" x2="12.01" y2="18" />
+              </svg>
+            </div>
+            <h3 class="feat-title">SMS-First, Zero Friction</h3>
+            <p class="feat-desc">Everything happens over text. No new app to remember, no push notifications to
+              configure. Open messages and you're there.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-icon bg-cyan">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="color:var(--cyan-light)">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <h3 class="feat-title">Daily Commitment Ritual</h3>
+            <p class="feat-desc">Every morning you state one priority and set a time. Publicly committing to an AI
+              partner significantly boosts follow-through.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-icon bg-amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="color:#fbbf24">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </div>
+            <h3 class="feat-title">Timed Focus Sessions</h3>
+            <p class="feat-desc">Lock in a time block, get a start signal, then receive check-ins at your chosen
+              frequency. External deadlines create internal focus.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-icon bg-green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="color:#34d399">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <h3 class="feat-title">Adaptive Tone</h3>
+            <p class="feat-desc">Choose your style: high-energy cheerleader, direct coach, or a calm friend. The AI
+              adapts its language to what actually motivates you.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-icon bg-blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="color:#60a5fa">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+            </div>
+            <h3 class="feat-title">Personalized Memory</h3>
+            <p class="feat-desc">FlowState knows your work type, where you get stuck, and your wins. Every message is
+              specific to you — never a generic reminder.</p>
+          </div>
+
+          <div class="feat-card">
+            <div class="feat-icon bg-red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="color:#f87171">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg>
+            </div>
+            <h3 class="feat-title">Weekly Progress Recaps</h3>
+            <p class="feat-desc">Sunday summaries show your session count, streak, and week-over-week trend.
+              Acknowledging progress builds long-term motivation.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ HOW IT WORKS ════════════════ -->
+    <section class="how" id="how-it-works">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">
+            <span class="label-chip">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 11 12 14 22 4" />
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                </polyline>
+              </svg>
+              The Flow
+            </span>
+          </div>
+          <h2 class="section-title">From stuck to <span class="gradient-text">started</span> in four steps</h2>
+        </div>
+
+        <div class="steps-row">
+
+          <div class="step">
+            <div class="step-circle">
+              <span class="step-num">1</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <h3 class="step-title">Set Up Once</h3>
+            <p class="step-desc">Three minutes. Tell FlowState your work type, where you get stuck, and your preferred
+              coaching style. That's it.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-circle">
+              <span class="step-num">2</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <h3 class="step-title">Daily Commitment</h3>
+            <p class="step-desc">At 9am, you get a text asking your one priority. Reply with your goal and a time slot.
+              Done.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-circle">
+              <span class="step-num">3</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </div>
+            <h3 class="step-title">Focused Session</h3>
+            <p class="step-desc">FlowState pings you to start. You say yes — then it keeps you on track with check-ins
+              at your preferred frequency.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-circle">
+              <span class="step-num">4</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+              </svg>
+            </div>
+            <h3 class="step-title">Celebrate Progress</h3>
+            <p class="step-desc">Log what you accomplished. FlowState acknowledges your specific win and tracks your
+              momentum over time.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ TONES ════════════════ -->
+    <section class="tones" id="tones">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">
+            <span class="label-chip">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              Your Style
+            </span>
+          </div>
+          <h2 class="section-title">Choose your <span class="gradient-text">coach voice</span></h2>
+          <p class="section-sub">Not every brain responds to the same motivation. Pick the tone that fits how yours
+            works.</p>
+        </div>
+
+        <div class="tones-grid">
+
+          <div class="tone-card">
+            <div class="tone-icon bg-amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="color:#fbbf24">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+            </div>
+            <h3 class="tone-name">The Cheerleader</h3>
+            <div class="tone-quote">"You've absolutely got this — I'm so excited to see what you accomplish today!"
+            </div>
+            <p class="tone-desc">High-energy, celebratory, keeps the momentum going with enthusiasm. Great if you need
+              external excitement to overcome inertia.</p>
+          </div>
+
+          <div class="tone-card featured">
+            <div class="tone-featured-label">Most Popular</div>
+            <div class="tone-icon bg-purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="color:var(--primary-light)">
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+              </svg>
+            </div>
+            <h3 class="tone-name">The Direct Coach</h3>
+            <div class="tone-quote">"Time to work on your proposal. Ready to start? Reply Yes or Need 5 min."</div>
+            <p class="tone-desc">Efficient, no-fluff, action-oriented. Like a good sports coach who respects your time
+              and keeps things moving.</p>
+          </div>
+
+          <div class="tone-card">
+            <div class="tone-icon bg-cyan">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" style="color:var(--cyan-light)">
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+            </div>
+            <h3 class="tone-name">The Gentle Friend</h3>
+            <div class="tone-quote">"Hey, no pressure — your session is starting soon. Whenever you're ready, I'm here."
+            </div>
+            <p class="tone-desc">Calm, compassionate, non-judgmental. Perfect if external pressure makes your ADHD worse
+              rather than better.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════ CTA ════════════════ -->
+    <section class="cta-block">
+      <div class="container">
+        <div class="cta-card">
+          <div class="section-label" style="margin-bottom:24px;">
+            <span class="label-chip">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+              Get Started
+            </span>
+          </div>
+          <h2 class="cta-title">Ready to find your<br /><span class="gradient-text">FlowState</span>?</h2>
+          <p class="cta-sub">Three minutes to set up. Your first morning check-in arrives tomorrow at 9am. No credit
+            card, no app.</p>
+          <a href="signup.html" class="btn btn-primary btn-lg">
+            Start for Free
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-row">
+      <a href="index.html" class="logo">
+        <div class="logo-mark" style="width:30px;height:30px;border-radius:8px;">
+          <img src="logo.webp" alt="logo" />
+        </div>
+        <span class="logo-name" style="font-size:1.05rem;">FlowState</span>
+      </a>
+      <p class="footer-copy">© 2025 FlowState. Built for ADHD freelancers everywhere.</p>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
+
+    // Animated chat demo
+    (function () {
+      const feed = document.getElementById('chatFeed');
+      if (!feed) return;
+
+      const sequence = [
+        { type: 'ts', text: 'Today · 9:00 AM' },
+        { type: 'ai', text: 'Good morning. What\'s your one priority today?' },
+        { type: 'user', text: 'Finish the client proposal draft' },
+        { type: 'ai', text: 'Good. When will you work on it?' },
+        { type: 'user', text: '2pm' },
+        { type: 'ai', text: 'Got it — I\'ll check in at 2:00 PM. Ready to start then.' },
+        { type: 'ts', text: 'Today · 2:00 PM' },
+        { type: 'ai', text: 'Time to work on your proposal. Ready to start?' },
+        { type: 'user', text: 'Yes' },
+        { type: 'ai', text: 'Timer started. Focus up.' },
+      ];
+
+      let i = 0;
+      const delays = [0, 600, 1800, 3100, 4400, 5600, 7200, 7900, 9400, 10800];
+
+      function reset() {
+        feed.innerHTML = '';
+        i = 0;
+        sequence.forEach((msg, idx) => {
+          setTimeout(() => addMsg(msg), delays[idx]);
+        });
+        setTimeout(reset, 15000);
+      }
+
+      function addMsg(msg) {
+        const el = document.createElement('div');
+        if (msg.type === 'ts') {
+          el.className = 'bubble-ts';
+        } else {
+          el.className = `bubble ${msg.type}`;
+          el.style.animation = 'fade-up 0.35s var(--ease-out)';
+        }
+        el.textContent = msg.text;
+        feed.appendChild(el);
+        feed.scrollTop = feed.scrollHeight;
+      }
+
+      reset();
+    })();
+
+    // Reveal on scroll
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animationPlayState = 'running';
+          e.target.style.opacity = '1';
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.feat-card, .step, .tone-card, .stat-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.animation = 'fade-up 0.6s var(--ease-out) forwards';
+      el.style.animationPlayState = 'paused';
+      io.observe(el);
+    });
+  </script>
+</body>
+
+</html>
