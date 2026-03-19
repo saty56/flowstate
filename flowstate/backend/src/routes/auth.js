@@ -85,11 +85,9 @@ router.post('/login', async (req, res) => {
         const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '7d' });
 
         // Remove sensitive data before sending
-        delete user.password_hash;
-        delete user.google_refresh_token;
-        delete user.todoist_token;
+        const { password_hash, ...safeUser } = user;
 
-        res.json({ user, token });
+        res.json({ user: safeUser, token });
 
     } catch (err) {
         console.error('Login error:', err);
