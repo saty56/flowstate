@@ -1,6 +1,7 @@
 const { Pool } = require('pg');
 
-const isRemote = process.env.DATABASE_URL.includes('supabase.com') || process.env.DATABASE_URL.includes('pooler');
+const databaseUrl = process.env.DATABASE_URL || '';
+const isRemote = databaseUrl.includes('supabase.com') || databaseUrl.includes('pooler');
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
