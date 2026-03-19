@@ -32,7 +32,12 @@ const query = async (text, params) => {
     }
     return res;
   } catch (err) {
-    console.error('❌ DB query error:', { text, err: err.message });
+    console.error('❌ DB query error:', { 
+      text: text.substring(0, 100), 
+      errorMessage: err.message,
+      errorCode: err.code,
+      stack: err.stack 
+    });
     throw err;
   }
 };
